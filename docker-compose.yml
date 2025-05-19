@@ -1,0 +1,25 @@
+services:
+  delete-service:
+    image: danysoftdev/p-go-delete:latest
+    container_name: microservicio-delete
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - "8085:8080"
+    networks:
+      - parcial_go_mongo_net
+
+  tester:
+    image: curlimages/curl
+    depends_on:
+      - delete-service
+    networks:
+      - parcial_go_mongo_net
+    entrypoint: [ "sh", "-c", "sleep 15 && curl -s --fail http://delete-service:8080 || exit 1" ]
+    profiles:
+      - test
+
+networks:
+  parcial_go_mongo_net:
+    external: true
