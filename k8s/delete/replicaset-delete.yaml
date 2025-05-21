@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: delete-replicaset
+  namespace: p-go-delete
+  labels:
+    app: delete-persona
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: delete-persona
+  template:
+    metadata:
+      labels:
+        app: delete-persona
+    spec:
+      nodeSelector:
+        workload: delete
+      containers:
+        - name: delete-container
+          image: danysoftdev/p-go-delete:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: mongo-delete-secret

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: delete-pod
+  namespace: p-go-delete
+  labels:
+    app: delete-persona
+spec:
+  nodeSelector:
+    workload: delete
+  containers:
+    - name: delete-container
+      image: danysoftdev/p-go-delete:latest
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - secretRef:
+            name: mongo-delete-secret
+        
