@@ -20,3 +20,4 @@ vendor/
 
 # Secret files
 k8s/delete/secrets-delete.yaml
+k8s/delete/dockerhub-secret.yaml

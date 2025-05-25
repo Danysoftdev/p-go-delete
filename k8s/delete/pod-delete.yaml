@@ -8,6 +8,8 @@ metadata:
 spec:
   nodeSelector:
     workload: delete
+  imagePullSecrets:
+    - name: dockerhub-secret
   containers:
     - name: delete-container
       image: danysoftdev/p-go-delete:latest

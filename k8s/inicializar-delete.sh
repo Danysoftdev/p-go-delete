@@ -9,6 +9,7 @@ kubectl apply -f k8s/delete/namespace-delete.yaml
 
 # Secret
 kubectl apply -f k8s/delete/secrets-delete.yaml
+kubectl apply -f k8s/delete/dockerhub-secret.yaml
 
 # Deployment
 kubectl apply -f k8s/delete/deployment-delete.yaml
